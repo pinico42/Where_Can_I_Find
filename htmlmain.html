@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="file:///C:/Users/Max/Documents/YRS%20code/2013/CSSmain.css">
+		<script src="file:///C:\Users\Max\Downloads\jquery-1.10.1.min.js"></script>
+		<script src="/phpfreechat-2.1.0/client/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<!---<script src="file:///C:/Users/Max/Documents/YRS%20code/JSmain.js"></script>-->
+		<link rel="stylesheet" type="text/css" href="/phpfreechat-2.1.0/client/themes/carbon/jquery.phpfreechat.min.css" />
+  		<script src="/phpfreechat-2.1.0/client/jquery.phpfreechat.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			function call_this() {
+				var text_area = document.forms["input"]["species"].value;
+				var near_area = document.forms["input"]["location"].value;
+				alert(near_area); 
+				alert(text_area);
+				if (near_area.length() >= 6 && near_area.length() <= 7){
+					var validPostcode = true;
+				} else {
+					alert("Postcode is invalid");
+					var validPostcode = false;
+				}
+				return false;
+				}
+
+
+		</script>
+	</head>
+	<body>
+		<div id="content">
+			<div id="reportFeed">
+				<div id="mychat">
+					<script type="text/javascript">
+						$('#mychat').phpfreechat({ serverUrl: '/phpfreechat-2.1.0/server' });
+					</script>
+				</div>
+			</div>
+			<div id="mainContent">
+				<div id="topBox">
+					<div id="linkBox">
+						<div id="home" class="link">Where can I find?</div>
+						<div id="bottomSet">
+							<div id="sitesNearMe" class="link">Sites near me</div>
+							<div id="submittedReport" class="link">Submit a report</div>
+							<div id="logs" class="link">The logs</div>
+						</div>
+					</div>
+				</div>
+				<div id="controlPanel">
+					<div id="form">
+						<form id="inputForm" name="input" action="#" method="post" onsubmit="return call_this()">
+							Find: <input type="text" name="species" value="species"><br/>
+							Near: <input type="text" name="location" value="postcode"><br/>
+							<input type="Submit" value="Go!">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>          
