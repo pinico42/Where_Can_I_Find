@@ -64,3 +64,14 @@
 	margin-left: 1em;
 	padding-top: 1em;
 }
+
+#googleMap {
+	width: 500px;
+	height: 380px;
+}
+
+#mapHolder {
+	float: right;
+	background-color: black;
+	height: 400px;
+}
