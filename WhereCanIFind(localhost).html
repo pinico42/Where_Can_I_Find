@@ -29,42 +29,106 @@
 			var postcode = document.forms["input"]["location"].value;
 			alert(postcode);
 
+			var url_get = "";
+
 			var url_postcode = "PC.php?postcode=" + postcode;
 
 			var lat = 0;
 			var lng = 0;
 
 			$.getJSON(
-				url_postcode, function(jsonFile) { alert("success");
-				console.log(jsonFile);
-				alert("Json found");
+				url_postcode, function(jsonFile) { 
+					alert("success");
+					console.log(jsonFile);
+					alert("Json found");
 
-				lat = jsonFile["geo"]["lat"];
-				lng = jsonFile["geo"]["lng"];
-				alert(lat+lng);
+					lat = jsonFile["geo"]["lat"];
+					lng = jsonFile["geo"]["lng"];
+					alert(lat+lng);
 
-				$("#googleMap").remove();
-				mapDiv = $("#beforeMap").after("<div id='googleMap'></div>");
+					url_get = "getSights.php?"////////////////////////add multiple php args
+					var lllist = []
 
-				var mapProp = {
-					center:new google.maps.LatLng(lat,lng),
-					zoom:5,
-					mapTypeId:google.maps.MapTypeId.ROADMAP
-				};
-				var map = new google.maps.Map(document.getElementById("googleMap")
-					,mapProp);
+					$.ajax(
+						url_get, function(latLngList) {
+								lllist = latLngList
+						} 
+					);
 
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(lat,lng),
-					icon:'purplepin.png'
-				});
 
-				marker.setMap(map);
+
+					$("#googleMap").remove();
+					mapDiv = $("#beforeMap").after("<div id='googleMap'></div>");
+
+					var mapProp = {
+						center:new google.maps.LatLng(lat,lng),
+						zoom:10,
+						mapTypeId:google.maps.MapTypeId.ROADMAP
+					};
+					var map = new google.maps.Map(document.getElementById("googleMap")
+						,mapProp);
+
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(lat,lng),
+						icon:'purplepin.png'
+					});
+
+					marker.setMap(map);
+
+					var animal0 = new google.maps.Marker({
+						position: new google.maps.LatLng(lllist[0][0],lllist[0][1])
+					});
+					var animal1 = new google.maps.Marker({
+						position: new google.maps.LatLng(lllist[1][0],lllist[1][1])
+					});
+					var animal2 = new google.maps.Marker({
+						position: new google.maps.LatLng(lllist[2][0],lllist[2][1])
+					});
+					var animal3 = new google.maps.Marker({
+						position: new google.maps.LatLng(lllist[3][0],lllist[3][1])
+					});
+					var animal4 = new google.maps.Marker({
+						position: new google.maps.LatLng(lllist[4][0],lllist[4][1])
+					});
+
+					marker0.setMap(map)
+					marker1.setMap(map)
+					marker2.setMap(map)
+					marker3.setMap(map)
+					marker4.setMap(map)
 			
 			});
 
 			
 			return false;
+		}
+
+		function logData() {
+			var nickname = document.forms["logInput"]["nickname"].value;
+			var animal = document.forms["logInput"]["animal"].value;
+			var msg = document.forms["logInput"]["msg"].value;
+			var postcode = document.forms["logInput"]["msg"].value;
+
+			var url_postcode = "PC.php?postcode=" + postcode;
+
+			var lat = 0;
+			var lng = 0;
+
+			$.getJSON(
+				url_postcode, function(jsonFile) { 
+					alert("connected");
+					console.log(jsonFile);
+					alert("Json found");
+
+					lat = jsonFile["geo"]["lat"];
+					lng = jsonFile["geo"]["lng"];
+					alert(lat+lng);
+			});
+
+
+
+			var url_log = ////////////////////////////////////////////////////add multiple php arguments here///////////////////////////
+			$.ajax(url_log);
 		}
 		</script>
 		
@@ -74,6 +138,17 @@
 	<body>
 		<div id="content">
 			<div id="reportFeed">
+				<div id="logForm">
+					<form id="logForm" name="logInput" action="#" method="post">
+						<h2>What did you see?</h2>
+						nickname: <input type="text" name="nickname" value=""><br/>
+						species: <input type="text" name="animal" value=""><br/>
+						message: <br/><textarea name="msg"></textarea><br/>
+						postcode: <input type="text" name="postcode" value="">
+						<input type="button" value="send!" onclick="logData()">
+
+					</form>
+				</div>
 			</div>
 			<div id="mainContent">
 				<div id="topBox">
@@ -81,8 +156,8 @@
 						<div id="form">
 							<form id="inputForm" name="input" action="#" method="post" onsubmit="return call_this()">
 								<h2 id="whereCanIFind">Where Can I find...</h2>
-								Find: <input type="text" name="species" value="species"><br/>
-								Near: <input type="text" name="location" value="postcode"><br/>
+								<span id="inputLabel">Find:</span>  <input type="text" name="species" value="species"><br/>
+								<span id="inputLabel">Near:</span><input type="text" name="location" value="postcode"><br/>
 								<input type="button" value="Go!" onclick="call_this()">
 							</form>
 						</div>

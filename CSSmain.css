@@ -5,6 +5,7 @@
 	float: right;
 	border-radius: 1em;
 	padding: 1em;
+	font-size: 1em;
 }
 
 #mainContent {
@@ -77,13 +78,12 @@
 #mapHolder {
 	float: right;
 	position: relative;
-	top: -25px;
+	top: -30px;
 
 }
 
-#whereCanIFind {
+h2 {
 	color: #cfe0b0;
-	margin-top: -6px;
 }
 
 #logo {
@@ -91,4 +91,23 @@
 	float: right;
 	left: 650px;
 	bottom: 90px;
+}
+
+#inputLabel {
+	color: #cfe0b0;
+}
+
+#logForm {
+	background-color: #cb79ad;
+	border-radius: 1em;
+	padding: 1em;
+	padding-top: 0.3em;
+}
+
+#whereCanIFind {
+	margin-top: 0.1em;
+}
+
+form {
+	font-color: #cfe0b0;
 }
