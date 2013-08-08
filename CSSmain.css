@@ -10,7 +10,7 @@
 #mainContent {
 	width: 75.5%;
 	height: 40.4em;
-	background-color: #b2a445;
+	background-color: #cfe0b0;
 	float: left;
 	border-radius: 1em;
 	padding: 1em;
@@ -21,18 +21,21 @@
 	height: 10em;
 	background-color: #54b245;
 	float: top;
+	border-top-right-radius: 1em;
+	border-top-left-radius: 1em;
 }
 
 #linkBox {
-	width: 30%;
+	width: 300px;
 	background-color: #458ab2;
 	height: 100%;
+	border-top-left-radius: 1em;
 }
 
 .link {
 	width: 32.9%;
 	height: 2.7em;
-	border: 1px solid black;
+	border: 1px solid white;
 	display: inline-block;
 	text-align: center;
 	margin-left: -2.5px;
@@ -66,12 +69,26 @@
 }
 
 #googleMap {
-	width: 500px;
-	height: 380px;
+	width: 1006px;
+	height: 475px;
+	background-color: black;
 }
 
 #mapHolder {
 	float: right;
-	background-color: black;
-	height: 400px;
+	position: relative;
+	top: -25px;
+
+}
+
+#whereCanIFind {
+	color: #cfe0b0;
+	margin-top: -6px;
+}
+
+#logo {
+	position: relative;
+	float: right;
+	left: 650px;
+	bottom: 90px;
 }

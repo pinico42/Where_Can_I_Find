@@ -1,4 +1,6 @@
 <?php
-	$postcode = $_get["postcode"];
-	echo file_get_contents("http://uk-postcodes.com/postcode/".$postcode.".xml");
+	$postcode = $_GET["postcode"];
+	//$postcode = "OX15DL";
+	$url = "http://uk-postcodes.com/postcode/" . $postcode . ".json";
+	echo file_get_contents($url);
 ?>
