@@ -54,14 +54,14 @@
 			//calls php proxy for postcode json info
 			$.getJSON(
 				url_postcode, function(jsonFile) { 
-					alert("success");
+					console.log("success");
 					console.log(jsonFile);
-					alert("Json found");
+					console.log("Json found");
 
 					//filters results
 					lat = jsonFile["geo"]["lat"];
 					lng = jsonFile["geo"]["lng"];
-					alert(lat+lng);
+					console.log(lat+lng);
 
 					url_get = "getSights.php?postcode="+postcode+"&lat="+lat+"&lng="+lng;
 					var lllist = []
