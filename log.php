@@ -2,9 +2,8 @@
 	$nickname = $_GET["nickname"];
 	$animal = $_GET["animal"];
 	$msg = $_GET["msg"];
-	$lat = $_GET["lat"];
-	$lng = $_GET["lng"];
+	$postcode = $_GET["postcode"]
 
 	exec ("python <<<<<scriptname>>>>>.py");
-	
+
 ?>

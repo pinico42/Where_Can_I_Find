@@ -22,16 +22,25 @@
 
 		google.maps.event.addDomListener(window, 'load', initialize);
 
+		var onePostcode = "";
 
 
 		function call_this() {
 			var species = document.forms["input"]["species"].value;
 			var postcode = document.forms["input"]["location"].value;
+
+			if(postcode.indexOf(" ") === -1) {
+				alert("postcode must contain a space");
+			}
+
 			alert(postcode);
 
 			var url_get = "";
 
-			var url_postcode = "PC.php?postcode=" + postcode;
+			var spaceIndex = postcode.indexOf(" ")
+			onePostcode = postcode.slice(0, spaceIndex) + postcode.slice(spaceIndex+1, postcode.length);
+
+			var url_postcode = "PC.php?postcode=" + onePostcode;
 
 			var lat = 0;
 			var lng = 0;
@@ -46,10 +55,10 @@
 					lng = jsonFile["geo"]["lng"];
 					alert(lat+lng);
 
-					url_get = "getSights.php?"////////////////////////add multiple php args
+					url_get = "getSights.php?postcode="+postcode+"&lat="+lat+"&lng="+lng;
 					var lllist = []
 
-					$.ajax(
+					$.getJSON(
 						url_get, function(latLngList) {
 								lllist = latLngList
 						} 
@@ -127,7 +136,7 @@
 
 
 
-			var url_log = ////////////////////////////////////////////////////add multiple php arguments here///////////////////////////
+			var url_log = "log.php?nickname="+nickname+"&animal="+animal+"&msg="+msg+"&postcode="+postcode;
 			$.ajax(url_log);
 		}
 		</script>

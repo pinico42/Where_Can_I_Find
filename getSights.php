@@ -3,7 +3,14 @@
 	$lng = $_GET["lng"];
 	$postcode = $_GET["postcode"];
 
-	exec("python <<<<scriptname>>>>.py",$output);
+	$file = fopen("APIfile.json","w",);
+	fwrite($file, '["'.$postcode.'""]');
+	fclose($file);
 
-	echo $output;
+	exec("python get_where_can_I_find.py");
+
+	$wFile = file_get_contents("APIfile.json");
+	echo $wFile;
+
+
 ?>
